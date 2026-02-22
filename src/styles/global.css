@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 /* ── Custom Theme (Tailwind v4 CSS-based config) ── */
 @theme {
   --color-primary: #8B5CF6;

@@ -50,10 +50,14 @@ import '../styles/global.css'
 
         <!-- Actions -->
         <div class="flex items-center gap-4">
-          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-500 dark:text-gray-400">
-            <span class="material-symbols-outlined dark:hidden">dark_mode</span>
-            <span class="material-symbols-outlined hidden dark:block">light_mode</span>
-          </button>
+          <div id="theme-toggle" class="relative flex items-center bg-gray-100 dark:bg-gray-800 rounded-full p-1 cursor-pointer transition-colors duration-300">
+            <!-- Sliding highlight pill -->
+            <div id="theme-pill" class="absolute top-1 h-[calc(100%-8px)] w-[calc(50%-2px)] bg-white dark:bg-gray-600 rounded-full shadow-sm transition-all duration-300 ease-in-out left-1 dark:left-[calc(50%+1px)]"></div>
+            <!-- Light mode icon (active in light) -->
+            <span class="relative z-10 material-symbols-outlined p-1.5 text-[20px] rounded-full transition-colors duration-300 text-amber-500 dark:text-gray-500">light_mode</span>
+            <!-- Dark mode icon (active in dark) -->
+            <span class="relative z-10 material-symbols-outlined p-1.5 text-[20px] rounded-full transition-colors duration-300 text-gray-400 dark:text-violet-300">dark_mode</span>
+          </div>
           <button class="bg-primary hover:bg-violet-700 text-white px-5 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-violet-500/30 text-sm hidden sm:block hover-glow">
             Download Now
           </button>
@@ -88,7 +92,7 @@ import '../styles/global.css'
         <div class="flex-1 relative w-full flex justify-center lg:justify-end">
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-violet-100 to-blue-50 dark:from-violet-900/20 dark:to-blue-900/20 rounded-full blur-3xl -z-10"></div>
           <div class="flex flex-col items-center">
-            <div class="relative w-[300px] h-[600px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-900 shadow-2xl overflow-hidden ring-1 ring-white/10">
+            <div class="relative w-[300px] h-[600px] bg-gray-900 dark:bg-black rounded-[3rem] border-[8px] border-gray-900 dark:border-gray-950 shadow-2xl overflow-hidden ring-1 ring-white/10">
               <div class="w-full h-full bg-[#F3F0FF] dark:bg-[#0f172a] relative overflow-hidden">
               <!-- Screen Carousel Container -->
               <div class="phone-carousel w-full h-full relative">
@@ -99,113 +103,86 @@ import '../styles/global.css'
                   <div class="flex justify-between items-center mb-5">
                     <h2 class="text-xl font-extrabold"><span class="text-primary">Flashcard</span><span class="text-cyan-500">ia</span></h2>
                     <div class="flex items-center gap-2">
-                      <div class="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
+                      <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 overflow-hidden">
                         <img alt="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeYjKi3L6pgwLOf5QkDwrfToeoYrKKR5xkbpuRALFk8ifHO_d7aiRc5pWt5RHvLZzK9Cx-i88ap-5VU0Okae7ldt8GCSTsjxaaaagEzUucOkgsihv2JyREMVAapQfe8kRT3f9P3OpXz-PXfUmFkyyVDoTak7luCMQQDmOiVbLcjzDNl9IMBz1NabQ6i8NWbX0f3DbapzNOibSqlL3iKhty2uo6ZVKzNijw-0aawlKd9FdGWpNWX3U0x_Q7_9Z6DmfzdO1ENYZ8a2I" class="w-full h-full object-cover" />
                       </div>
-                      <div class="flex items-center gap-1 bg-orange-100 px-2 py-1 rounded-full">
+                      <div class="flex items-center gap-1 bg-orange-100 dark:bg-orange-900/40 px-2 py-1 rounded-full">
                         <ion-icon name="flame" class="text-orange-500 text-[10px]"></ion-icon>
-                        <span class="text-orange-600 text-[10px] font-bold">1</span>
+                        <span class="text-orange-600 dark:text-orange-400 text-[10px] font-bold">1</span>
                       </div>
                     </div>
                   </div>
                   <!-- Stats -->
                   <div class="grid grid-cols-2 gap-3 mb-5">
-                    <div class="bg-white rounded-xl p-3 shadow-sm">
-                      <div class="flex items-center gap-1 mb-1"><ion-icon name="alarm-outline" class="text-orange-400 text-[10px]"></ion-icon><span class="text-[9px] text-gray-500">Due Today</span></div>
-                      <p class="text-lg font-extrabold text-gray-900">5 Cards</p>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-3 shadow-sm dark:shadow-none dark:border dark:border-slate-700/50">
+                      <div class="flex items-center gap-1 mb-1"><ion-icon name="alarm-outline" class="text-orange-400 text-[10px]"></ion-icon><span class="text-[9px] text-gray-500 dark:text-gray-400">Due Today</span></div>
+                      <p class="text-lg font-extrabold text-gray-900 dark:text-white">5 Cards</p>
                     </div>
-                    <div class="bg-white rounded-xl p-3 shadow-sm">
-                      <div class="flex items-center gap-1 mb-1"><ion-icon name="trending-up-outline" class="text-green-500 text-[10px]"></ion-icon><span class="text-[9px] text-gray-500">Learned</span></div>
-                      <p class="text-lg font-extrabold text-gray-900">4 Words</p>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-3 shadow-sm dark:shadow-none dark:border dark:border-slate-700/50">
+                      <div class="flex items-center gap-1 mb-1"><ion-icon name="trending-up-outline" class="text-green-500 text-[10px]"></ion-icon><span class="text-[9px] text-gray-500 dark:text-gray-400">Learned</span></div>
+                      <p class="text-lg font-extrabold text-gray-900 dark:text-white">4 Words</p>
                     </div>
                   </div>
                   <!-- Deck list -->
-                  <p class="text-sm font-bold text-gray-900 mb-3">Your Decks</p>
+                  <p class="text-sm font-bold text-gray-900 dark:text-white mb-3">Your Decks</p>
                   <div class="flex flex-col gap-2.5">
-                    <div class="bg-white rounded-xl p-3 flex items-center justify-between shadow-sm">
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-3 flex items-center justify-between shadow-sm dark:shadow-none dark:border dark:border-slate-700/50">
                       <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center text-primary text-xs font-bold">文A</div>
-                        <div><p class="text-sm font-bold text-gray-900">Phrases</p><p class="text-[9px] text-gray-400">2 cards</p></div>
+                        <div class="w-9 h-9 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-primary text-xs font-bold">文A</div>
+                        <div><p class="text-sm font-bold text-gray-900 dark:text-white">Phrases</p><p class="text-[9px] text-gray-400">2 cards</p></div>
                       </div>
-                      <div class="flex gap-1.5"><span class="bg-green-100 text-green-600 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">2</span><span class="bg-red-100 text-red-500 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-green-100 text-green-600 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
+                      <div class="flex gap-1.5"><span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">2</span><span class="bg-red-100 dark:bg-red-900/40 text-red-500 dark:text-red-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
                     </div>
-                    <div class="bg-white rounded-xl p-3 flex items-center justify-between shadow-sm">
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-3 flex items-center justify-between shadow-sm dark:shadow-none dark:border dark:border-slate-700/50">
                       <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center text-primary text-xs font-bold">文A</div>
-                        <div><p class="text-sm font-bold text-gray-900">Verbs</p><p class="text-[9px] text-gray-400">3 cards</p></div>
+                        <div class="w-9 h-9 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-primary text-xs font-bold">文A</div>
+                        <div><p class="text-sm font-bold text-gray-900 dark:text-white">Verbs</p><p class="text-[9px] text-gray-400">3 cards</p></div>
                       </div>
-                      <div class="flex gap-1.5"><span class="bg-green-100 text-green-600 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">3</span><span class="bg-red-100 text-red-500 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-green-100 text-green-600 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
+                      <div class="flex gap-1.5"><span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">3</span><span class="bg-red-100 dark:bg-red-900/40 text-red-500 dark:text-red-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
                     </div>
-                    <div class="bg-white rounded-xl p-3 flex items-center justify-between shadow-sm">
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-3 flex items-center justify-between shadow-sm dark:shadow-none dark:border dark:border-slate-700/50">
                       <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center text-primary text-xs font-bold">文A</div>
-                        <div><p class="text-sm font-bold text-gray-900">B2 words</p><p class="text-[9px] text-gray-400">4 cards</p></div>
+                        <div class="w-9 h-9 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-primary text-xs font-bold">文A</div>
+                        <div><p class="text-sm font-bold text-gray-900 dark:text-white">B2 words</p><p class="text-[9px] text-gray-400">4 cards</p></div>
                       </div>
-                      <div class="flex gap-1.5"><span class="bg-green-100 text-green-600 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-red-100 text-red-500 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-green-100 text-green-600 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
+                      <div class="flex gap-1.5"><span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-red-100 dark:bg-red-900/40 text-red-500 dark:text-red-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span><span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></div>
                     </div>
                   </div>
                   <!-- FAB & Tab Bar -->
                   <div class="mt-auto pt-3 flex justify-end"><div class="w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center text-white text-2xl font-light"><ion-icon name="add-outline"></ion-icon></div></div>
-                  <div class="flex justify-around pt-3 border-t border-gray-200 mt-3">
+                  <div class="flex justify-around pt-3 border-t border-gray-200 dark:border-slate-700 mt-3">
                     <div class="flex flex-col items-center"><ion-icon name="albums" class="text-primary text-[18px]"></ion-icon><span class="text-[8px] font-bold text-primary mt-0.5">Decks</span></div>
-                    <div class="flex flex-col items-center"><ion-icon name="trophy-outline" class="text-gray-400 text-[18px]"></ion-icon><span class="text-[8px] text-gray-400 mt-0.5">Challenge</span></div>
-                    <div class="flex flex-col items-center"><ion-icon name="settings-outline" class="text-gray-400 text-[18px]"></ion-icon><span class="text-[8px] text-gray-400 mt-0.5">Settings</span></div>
+                    <div class="flex flex-col items-center"><ion-icon name="trophy-outline" class="text-gray-400 dark:text-slate-500 text-[18px]"></ion-icon><span class="text-[8px] text-gray-400 dark:text-slate-500 mt-0.5">Challenge</span></div>
+                    <div class="flex flex-col items-center"><ion-icon name="settings-outline" class="text-gray-400 dark:text-slate-500 text-[18px]"></ion-icon><span class="text-[8px] text-gray-400 dark:text-slate-500 mt-0.5">Settings</span></div>
                   </div>
                 </div>
 
                 <!-- SCREEN 2: Card Review (Reliable) -->
                 <div class="phone-screen absolute inset-0 flex flex-col p-5 pt-8 opacity-0">
                   <!-- Header -->
-                  <div class="flex justify-between items-center mb-5">
-                    <ion-icon name="close" class="text-gray-800 dark:text-[#9ca3af] text-2xl font-bold"></ion-icon>
-                    <div class="flex gap-4 text-[17px]">
-                      <span class="text-blue-500 dark:text-[#60a5fa] font-extrabold tracking-wide">3</span>
-                      <span class="text-red-500 dark:text-[#f87171] font-extrabold tracking-wide">0</span>
-                      <span class="text-green-500 dark:text-[#34d399] font-extrabold tracking-wide">0</span>
-                    </div>
-                    <ion-icon name="options-outline" class="text-gray-500 dark:text-[#9ca3af] text-2xl"></ion-icon>
+                  <div class="flex justify-between items-center mb-4">
+                    <ion-icon name="close" class="text-gray-600 dark:text-gray-400 text-xl"></ion-icon>
+                    <div class="flex gap-2"><span class="text-blue-500 font-bold text-sm">3</span><span class="text-red-500 font-bold text-sm">0</span><span class="text-green-500 font-bold text-sm">0</span></div>
+                    <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 text-lg"></ion-icon>
                   </div>
                   <!-- Main Card -->
-                  <div class="flex-1 flex flex-col items-center justify-center bg-white dark:bg-[#1e293b] rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 my-2 border border-transparent dark:border-[#334155]">
-                    <span class="bg-green-100/70 dark:bg-[#34d399]/10 text-green-500 dark:text-[#34d399] text-[10px] font-black tracking-[0.15em] px-4 py-1.5 rounded-full uppercase mb-6">Definition</span>
-                    
-                    <p class="text-center text-[21px] font-bold text-[#111827] dark:text-[#f9fafb] leading-[1.3] mb-8 w-full max-w-[240px]">
-                      Consistently good in quality or performance; able to be trusted
-                    </p>
-                    
-                    <span class="bg-[#f3e8ff] dark:bg-[#a78bfa]/15 text-[#a78bfa] text-[10px] font-black tracking-widest px-4 py-1.5 rounded-full uppercase mb-4 flex items-center justify-center gap-1.5">
-                      <ion-icon name="eye" class="text-[14px]"></ion-icon> Meaning
-                    </span>
-                    
-                    <p class="text-gray-500 dark:text-[#9ca3af] text-[15px] font-medium mb-8 flex items-center justify-center gap-2">
-                      <ion-icon name="volume-medium-outline" class="text-[17px]"></ion-icon> //rɪˈlaɪəbəl//
-                    </p>
-                    
-                    <div class="w-16 border-t border-gray-100 dark:border-[#334155] mb-5"></div>
-                    
-                    <div class="space-y-4 text-center">
-                      <p class="text-[13px] text-gray-400 dark:text-[#9ca3af] italic font-medium leading-relaxed">"She's a reliable friend, always there to help"</p>
-                      <p class="text-[13px] text-gray-400 dark:text-[#9ca3af] italic font-medium leading-relaxed">"The company is reliable and delivers high-quality products"</p>
+                  <div class="flex-1 flex flex-col items-center justify-center bg-white dark:bg-slate-800 rounded-3xl shadow-sm dark:shadow-none dark:border dark:border-slate-700/50 p-6 my-2">
+                    <span class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 text-[9px] font-bold px-3 py-1 rounded-full uppercase mb-3">Definition</span>
+                    <p class="text-center text-base font-bold text-gray-900 dark:text-white leading-snug mb-4">Consistently good in quality or performance; able to be trusted</p>
+                    <span class="bg-purple-100 dark:bg-purple-900/40 text-primary text-[9px] font-bold px-3 py-1 rounded-full uppercase mb-2 flex items-center justify-center gap-1"><ion-icon name="eye-outline" class="text-[10px]"></ion-icon> Meaning</span>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs mb-4 flex items-center justify-center gap-1"><ion-icon name="volume-medium-outline" class="text-sm"></ion-icon> //rɪˈlaɪəbəl//</p>
+                    <div class="w-8 border-t border-gray-200 dark:border-slate-700 mb-4"></div>
+                    <div class="space-y-2 text-center">
+                      <p class="text-[11px] text-gray-400 dark:text-gray-500 italic">"She's a reliable friend, always there to help"</p>
+                      <p class="text-[11px] text-gray-400 dark:text-gray-500 italic">"The company is reliable and delivers high-quality products"</p>
                     </div>
                   </div>
                   <!-- Spaced Repetition Buttons -->
-                  <div class="grid grid-cols-4 gap-2.5 mt-5">
-                    <div class="flex flex-col items-center justify-center py-3 rounded-[1.25rem] bg-white dark:bg-[#1e293b] border hover:bg-gray-50 dark:hover:bg-[#334155] border-red-100 dark:border-[#f87171] shadow-[0_4px_12px_rgb(0,0,0,0.02)] cursor-pointer transition-colors pb-3.5">
-                      <span class="text-[12px] font-black text-red-500 dark:text-[#f87171] uppercase tracking-wide mb-0.5">Again</span>
-                      <span class="text-[11px] font-medium text-gray-400 dark:text-[#9ca3af]">1m</span>
-                    </div>
-                    <div class="flex flex-col items-center justify-center py-3 rounded-[1.25rem] bg-white dark:bg-[#1e293b] border hover:bg-gray-50 dark:hover:bg-[#334155] border-yellow-200 dark:border-[#fbbf24] shadow-[0_4px_12px_rgb(0,0,0,0.02)] cursor-pointer transition-colors pb-3.5">
-                      <span class="text-[12px] font-black text-yellow-500 dark:text-[#fbbf24] uppercase tracking-wide mb-0.5">Hard</span>
-                      <span class="text-[11px] font-medium text-gray-400 dark:text-[#9ca3af]">10m</span>
-                    </div>
-                    <div class="flex flex-col items-center justify-center py-3 rounded-[1.25rem] bg-white dark:bg-[#1e293b] border hover:bg-gray-50 dark:hover:bg-[#334155] border-green-200 dark:border-[#34d399] shadow-[0_4px_12px_rgb(0,0,0,0.02)] cursor-pointer transition-colors pb-3.5">
-                      <span class="text-[12px] font-black text-green-500 dark:text-[#34d399] uppercase tracking-wide mb-0.5">Good</span>
-                      <span class="text-[11px] font-medium text-gray-400 dark:text-[#9ca3af]">1d</span>
-                    </div>
-                    <div class="flex flex-col items-center justify-center py-3 rounded-[1.25rem] bg-white dark:bg-[#1e293b] border hover:bg-gray-50 dark:hover:bg-[#334155] border-blue-100 dark:border-[#60a5fa] shadow-[0_4px_12px_rgb(0,0,0,0.02)] cursor-pointer transition-colors pb-3.5">
-                      <span class="text-[12px] font-black text-blue-500 dark:text-[#60a5fa] uppercase tracking-wide mb-0.5">Easy</span>
-                      <span class="text-[11px] font-medium text-gray-400 dark:text-[#9ca3af]">4d</span>
-                    </div>
+                  <div class="grid grid-cols-4 gap-2 mt-3">
+                    <div class="flex flex-col items-center p-2 rounded-xl bg-white dark:bg-slate-800 border border-red-100 dark:border-red-900/50"><span class="text-[10px] font-bold text-red-500 dark:text-red-400 uppercase">Again</span><span class="text-[9px] text-gray-400 dark:text-gray-500">1m</span></div>
+                    <div class="flex flex-col items-center p-2 rounded-xl bg-white dark:bg-slate-800 border border-yellow-100 dark:border-yellow-900/50"><span class="text-[10px] font-bold text-yellow-500 dark:text-yellow-400 uppercase">Hard</span><span class="text-[9px] text-gray-400 dark:text-gray-500">10m</span></div>
+                    <div class="flex flex-col items-center p-2 rounded-xl bg-white dark:bg-slate-800 border border-green-100 dark:border-green-900/50"><span class="text-[10px] font-bold text-green-500 dark:text-green-400 uppercase">Good</span><span class="text-[9px] text-gray-400 dark:text-gray-500">1d</span></div>
+                    <div class="flex flex-col items-center p-2 rounded-xl bg-white dark:bg-slate-800 border border-blue-100 dark:border-blue-900/50"><span class="text-[10px] font-bold text-blue-500 dark:text-blue-400 uppercase">Easy</span><span class="text-[9px] text-gray-400 dark:text-gray-500">4d</span></div>
                   </div>
                 </div>
 
@@ -214,65 +191,65 @@ import '../styles/global.css'
                   <!-- Header -->
                   <div class="flex items-center mb-4 mt-1">
                     <ion-icon name="close" class="text-[#8b5cf6] font-bold text-xl absolute"></ion-icon>
-                    <h2 class="w-full text-center text-[14px] font-extrabold text-[#111827]">Challenge Setup</h2>
+                    <h2 class="w-full text-center text-[14px] font-extrabold text-[#111827] dark:text-white">Challenge Setup</h2>
                   </div>
                   
-                  <div class="border-b-[1px] border-[#f3f4f6] -mx-5 mb-4 mt-[-12px]"></div>
+                  <div class="border-b-[1px] border-[#f3f4f6] dark:border-slate-700 -mx-5 mb-4 mt-[-12px]"></div>
 
                   <!-- Title -->
-                  <h1 class="text-[20px] font-extrabold text-[#111827] mb-0.5">Verbs</h1>
-                  <p class="text-[11px] text-[#6b7280] mb-4 font-medium"><strong class="text-[#111827]">3</strong> cards available</p>
+                  <h1 class="text-[20px] font-extrabold text-[#111827] dark:text-white mb-0.5">Verbs</h1>
+                  <p class="text-[11px] text-[#6b7280] dark:text-gray-400 mb-4 font-medium"><strong class="text-[#111827] dark:text-white">3</strong> cards available</p>
                   
                   <!-- Card type pills -->
                   <div class="flex gap-2 mb-4">
                     <!-- New -->
-                    <div class="flex-1 flex flex-col items-center bg-[#f0f5ff] border border-[#60a5fa] rounded-xl py-2 px-1 relative shadow-sm">
-                      <div class="w-6 h-6 rounded-full bg-[#dbeafe] flex items-center justify-center mb-1"><ion-icon name="sparkles" class="text-[#3b82f6] text-[13px]"></ion-icon></div>
+                    <div class="flex-1 flex flex-col items-center bg-[#f0f5ff] dark:bg-blue-900/30 border border-[#60a5fa] dark:border-blue-500/50 rounded-xl py-2 px-1 relative shadow-sm dark:shadow-none">
+                      <div class="w-6 h-6 rounded-full bg-[#dbeafe] dark:bg-blue-900/50 flex items-center justify-center mb-1"><ion-icon name="sparkles" class="text-[#3b82f6] text-[13px]"></ion-icon></div>
                       <span class="text-[10px] font-bold text-[#3b82f6]">New</span>
                       <span class="absolute top-1.5 right-1.5 w-1 h-1 bg-[#3b82f6] rounded-full"></span>
                     </div>
                     <!-- Active -->
-                    <div class="flex-1 flex flex-col items-center bg-[#fff1f2] border border-[#f87171] rounded-xl py-2 px-1 relative shadow-sm">
-                      <div class="w-6 h-6 rounded-full bg-[#ffe4e6] flex items-center justify-center mb-1"><ion-icon name="school" class="text-[#ef4444] text-[13px]"></ion-icon></div>
+                    <div class="flex-1 flex flex-col items-center bg-[#fff1f2] dark:bg-red-900/30 border border-[#f87171] dark:border-red-500/50 rounded-xl py-2 px-1 relative shadow-sm dark:shadow-none">
+                      <div class="w-6 h-6 rounded-full bg-[#ffe4e6] dark:bg-red-900/50 flex items-center justify-center mb-1"><ion-icon name="school" class="text-[#ef4444] text-[13px]"></ion-icon></div>
                       <span class="text-[10px] font-bold text-[#ef4444]">Active</span>
                       <span class="absolute top-1.5 right-1.5 w-1 h-1 bg-[#ef4444] rounded-full"></span>
                     </div>
                     <!-- Review -->
-                    <div class="flex-1 flex flex-col items-center bg-[#f0fdf4] border border-[#10b981] rounded-xl py-2 px-1 relative shadow-sm">
-                      <div class="w-6 h-6 rounded-full bg-[#dcfce7] flex items-center justify-center mb-1"><ion-icon name="checkmark-circle" class="text-[#10b981] text-[13px]"></ion-icon></div>
+                    <div class="flex-1 flex flex-col items-center bg-[#f0fdf4] dark:bg-emerald-900/30 border border-[#10b981] dark:border-emerald-500/50 rounded-xl py-2 px-1 relative shadow-sm dark:shadow-none">
+                      <div class="w-6 h-6 rounded-full bg-[#dcfce7] dark:bg-emerald-900/50 flex items-center justify-center mb-1"><ion-icon name="checkmark-circle" class="text-[#10b981] text-[13px]"></ion-icon></div>
                       <span class="text-[10px] font-bold text-[#10b981]">Review</span>
                       <span class="absolute top-1.5 right-1.5 w-1 h-1 bg-[#10b981] rounded-full"></span>
                     </div>
                   </div>
                   
                   <!-- Number of Cards -->
-                  <h3 class="text-[14px] font-bold text-[#111827] mb-2.5">Number of Cards</h3>
+                  <h3 class="text-[14px] font-bold text-[#111827] dark:text-white mb-2.5">Number of Cards</h3>
                   <div class="flex gap-2 mb-5">
                     <span class="bg-[#8b5cf6] text-white text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center shadow-md">10</span>
-                    <span class="bg-white text-[#111827] text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6]">20</span>
-                    <span class="bg-white text-[#111827] text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6]">50</span>
-                    <span class="bg-white text-[#111827] text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6]">All</span>
-                    <span class="bg-white text-[#111827] text-[16px] flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6]"><ion-icon name="pencil"></ion-icon></span>
+                    <span class="bg-white dark:bg-slate-800 text-[#111827] dark:text-white text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6] dark:border-slate-700">20</span>
+                    <span class="bg-white dark:bg-slate-800 text-[#111827] dark:text-white text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6] dark:border-slate-700">50</span>
+                    <span class="bg-white dark:bg-slate-800 text-[#111827] dark:text-white text-[12px] font-extrabold flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6] dark:border-slate-700">All</span>
+                    <span class="bg-white dark:bg-slate-800 text-[#111827] dark:text-white text-[16px] flex-1 h-[38px] rounded-xl flex items-center justify-center border border-[#f3f4f6] dark:border-slate-700"><ion-icon name="pencil"></ion-icon></span>
                   </div>
                   
                   <!-- Difficulty Mode -->
-                  <h3 class="text-[14px] font-bold text-[#111827] mb-2.5">Difficulty Mode</h3>
+                  <h3 class="text-[14px] font-bold text-[#111827] dark:text-white mb-2.5">Difficulty Mode</h3>
                   <div class="grid grid-cols-2 gap-3 mb-4">
                     <!-- Easy -->
-                    <div class="border-[1.5px] border-[#f59e0b] rounded-[16px] pb-3 pt-4 flex flex-col items-center relative bg-[#fffbeb] shadow-sm">
-                      <span class="absolute -top-1 -right-1 w-4.5 h-4.5 bg-[#f59e0b] rounded-full flex items-center justify-center text-white pb-[1px] text-[11px] border-2 border-white"><ion-icon name="checkmark-outline" class="stroke-2"></ion-icon></span>
+                    <div class="border-[1.5px] border-[#f59e0b] rounded-[16px] pb-3 pt-4 flex flex-col items-center relative bg-[#fffbeb] dark:bg-amber-900/20 shadow-sm dark:shadow-none">
+                      <span class="absolute -top-1 -right-1 w-4.5 h-4.5 bg-[#f59e0b] rounded-full flex items-center justify-center text-white pb-[1px] text-[11px] border-2 border-white dark:border-slate-900"><ion-icon name="checkmark-outline" class="stroke-2"></ion-icon></span>
                       <ion-icon name="bicycle-outline" class="text-[#f59e0b] text-[30px] mb-1.5 stroke-1"></ion-icon>
                       <span class="text-[13px] font-bold text-[#f59e0b]">Easy</span>
                     </div>
                     <!-- Hard -->
-                    <div class="border border-[#f3f4f6] rounded-[16px] pb-3 pt-4 flex flex-col items-center bg-white shadow-sm">
-                      <ion-icon name="flame" class="text-[#111827] text-[30px] mb-1.5"></ion-icon>
-                      <span class="text-[13px] font-bold text-[#111827]">Hard</span>
+                    <div class="border border-[#f3f4f6] dark:border-slate-700 rounded-[16px] pb-3 pt-4 flex flex-col items-center bg-white dark:bg-slate-800 shadow-sm dark:shadow-none">
+                      <ion-icon name="flame" class="text-[#111827] dark:text-white text-[30px] mb-1.5"></ion-icon>
+                      <span class="text-[13px] font-bold text-[#111827] dark:text-white">Hard</span>
                     </div>
                   </div>
 
                   <!-- Info alert -->
-                  <div class="bg-[#fffbeb] border border-[#fef3c7] rounded-[12px] p-2.5 flex items-start gap-2 mb-3 mt-auto">
+                  <div class="bg-[#fffbeb] dark:bg-amber-900/20 border border-[#fef3c7] dark:border-amber-700/40 rounded-[12px] p-2.5 flex items-start gap-2 mb-3 mt-auto">
                     <ion-icon name="information-circle" class="text-[#f59e0b] text-[17px] mt-[1px] flex-shrink-0"></ion-icon>
                     <p class="text-[11px] font-bold text-[#f59e0b] leading-[1.3]">Just finish all cards. No score requirements.<br/>Great for practice.</p>
                   </div>
@@ -289,27 +266,27 @@ import '../styles/global.css'
                 <div class="phone-screen absolute inset-0 flex flex-col p-5 pt-8 opacity-0">
                   <!-- Progress bar -->
                   <div class="flex items-center gap-2 mb-3">
-                    <ion-icon name="close" class="text-gray-600 text-xl"></ion-icon>
-                    <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="w-1/3 h-full bg-primary rounded-full"></div></div>
-                    <span class="text-[10px] text-gray-500 font-bold">1/3</span>
+                    <ion-icon name="close" class="text-gray-600 dark:text-gray-400 text-xl"></ion-icon>
+                    <div class="flex-1 h-1.5 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden"><div class="w-1/3 h-full bg-primary rounded-full"></div></div>
+                    <span class="text-[10px] text-gray-500 dark:text-gray-400 font-bold">1/3</span>
                   </div>
-                  <p class="text-center text-xs text-gray-500 mb-1">Make a sentence with:</p>
-                  <h3 class="text-center text-2xl font-extrabold text-gray-900 mb-1">Create</h3>
-                  <p class="text-center text-[10px] text-gray-400 italic mb-4">to make or bring into existence something new</p>
+                  <p class="text-center text-xs text-gray-500 dark:text-gray-400 mb-1">Make a sentence with:</p>
+                  <h3 class="text-center text-2xl font-extrabold text-gray-900 dark:text-white mb-1">Create</h3>
+                  <p class="text-center text-[10px] text-gray-400 dark:text-gray-500 italic mb-4">to make or bring into existence something new</p>
                   <!-- Input -->
-                  <div class="bg-white rounded-2xl p-4 mb-4 shadow-sm border border-gray-100 min-h-[60px]">
-                    <p class="text-sm text-gray-800">I create a word</p>
+                  <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 mb-4 shadow-sm dark:shadow-none border border-gray-100 dark:border-slate-700 min-h-[60px]">
+                    <p class="text-sm text-gray-800 dark:text-gray-200">I create a word</p>
                   </div>
                   <!-- Score Card -->
-                  <div class="bg-white border-2 border-green-400 rounded-2xl p-4 shadow-sm mb-4">
+                  <div class="bg-white dark:bg-slate-800 border-2 border-green-400 dark:border-green-500/50 rounded-2xl p-4 shadow-sm dark:shadow-none mb-4">
                     <div class="flex items-center justify-between mb-2">
                       <div class="flex items-center gap-1.5 text-green-500 font-bold text-base"><ion-icon name="checkmark-circle" class="text-green-500 text-xl"></ion-icon> Score: 6</div>
                       <ion-icon name="bulb-outline" class="text-yellow-400 text-xl"></ion-icon>
                     </div>
-                    <p class="text-[11px] text-gray-600 leading-relaxed mb-3">The word 'create' is used in the sentence, but it's not entirely clear what you mean by 'create a word'. The phrase could be improved for better clarity and specificity.</p>
-                    <div class="bg-purple-50 border border-purple-100 rounded-xl p-2.5">
+                    <p class="text-[11px] text-gray-600 dark:text-gray-300 leading-relaxed mb-3">The word 'create' is used in the sentence, but it's not entirely clear what you mean by 'create a word'. The phrase could be improved for better clarity and specificity.</p>
+                    <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-100 dark:border-purple-800/50 rounded-xl p-2.5">
                       <p class="text-[9px] font-bold text-primary uppercase mb-1 flex items-center gap-1"><ion-icon name="sparkles" class="text-primary text-[10px]"></ion-icon> Better way to say it</p>
-                      <p class="text-[11px] text-gray-800 italic">I am going to create a new word for our game.</p>
+                      <p class="text-[11px] text-gray-800 dark:text-gray-200 italic">I am going to create a new word for our game.</p>
                     </div>
                   </div>
                   <!-- CTA -->
